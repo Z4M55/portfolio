@@ -1,0 +1,3 @@
+# Sin dependencias externas — solo stdlib de Python 3.8+
+# generate.py y update_project.py usan únicamente:
+#   json, os, sys, argparse, pathlib, datetime, subprocess, re

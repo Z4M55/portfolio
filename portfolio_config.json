@@ -1,0 +1,141 @@
+{
+  "personal": {
+    "name": "Samuel Serna G.",
+    "title": "Diseñador Interactivo",
+    "tagline": "Diseño que clarifica. Experiencias que permanecen.",
+    "bio": "Diseñador enfocado en crear experiencias digitales que resuelven problemas reales. Combino investigación con intuición visual para construir productos que los usuarios entienden a la primera.",
+    "email": "ssernag5@eafit.edu.co",
+    "linkedin": "https://linkedin.com/in/tunombre",
+    "behance": "https://behance.net/tunombre",
+    "dribbble": "https://dribbble.com/tunombre",
+    "cv_url": ""
+  },
+  "projects": [
+    {
+      "id": "lio-manual-marca",
+      "title": "LIO — Manual de Marca",
+      "category": "Branding",
+      "description": "Manual de marca completo para LIO, marca de productos alimenticios. Sistema visual que abarca estrategia, logotipo, paleta cromatica, tipografia y aplicaciones en medios digitales e impresos, redes sociales y merchandise.",
+      "tags": [
+        "Branding",
+        "Identidad Visual",
+        "Sistema Visual",
+        "Figma"
+      ],
+      "image": "images/lio-manual-marca.jpg",
+      "url": "#",
+      "year": "2026",
+      "featured": true
+    },
+    {
+      "id": "temporada-ethel-gilmour",
+      "title": "Temporada — Archivo Florecido",
+      "category": "Diseño Editorial",
+      "description": "Proyecto editorial y curatorial sobre la obra de Ethel Gilmour, pintora e instaladora colombo-estadounidense. Propuesta de recorrido y montaje expositivo que conecta archivo, memoria y violencia en el arte contemporaneo de Antioquia.",
+      "tags": [
+        "Editorial",
+        "Curaduria",
+        "Exposicion",
+        "Diseño de Experiencia"
+      ],
+      "image": "images/temporada-ethel-gilmour.jpg",
+      "url": "#",
+      "year": "2026",
+      "featured": true
+    },
+    {
+      "id": "hilo-circular-renault",
+      "title": "Hilo Circular — Economia Circular",
+      "category": "Research & Estrategia",
+      "description": "Investigacion de mercados para articular los residuos textiles de Renault Sofasa con diseñadores de Medellin mediante modelos de upcycling y downcycling. Propuesta de cadena de valor con impacto ambiental, social y economico en el Valle de Aburra.",
+      "tags": [
+        "Market Research",
+        "Estrategia",
+        "Sostenibilidad",
+        "Economia Circular"
+      ],
+      "image": "images/hilo-circular-renault.jpg",
+      "url": "#",
+      "year": "2024",
+      "featured": false
+    },
+    {
+      "id": "nuez-pimienta-ux",
+      "title": "Nuez & Pimienta — Portal Web",
+      "category": "UX Design",
+      "description": "Diseño de portal web para restaurante de alimentacion consciente en Medellin. Integracion de servicios (reservas, domicilios, eventos) con enfoque en comunicar la esencia de la marca para publicos locales e internacionales, basado en research con arquetipos reales.",
+      "tags": [
+        "UX Design",
+        "Web Design",
+        "User Research",
+        "Arquetipos"
+      ],
+      "image": "images/nuez-pimienta-ux.jpg",
+      "url": "#",
+      "year": "2025",
+      "featured": true
+    }
+  ],
+  "skills": [
+    {
+      "name": "UX Research",
+      "level": 95
+    },
+    {
+      "name": "UI Design",
+      "level": 92
+    },
+    {
+      "name": "Figma",
+      "level": 98
+    },
+    {
+      "name": "Design Systems",
+      "level": 88
+    },
+    {
+      "name": "Prototyping",
+      "level": 90
+    },
+    {
+      "name": "Branding",
+      "level": 80
+    }
+  ],
+  "process_steps": [
+    {
+      "number": "01",
+      "title": "Investigacion",
+      "description": "Entrevistas, analisis competitivo y mapeo de la experiencia actual. Datos antes de decisiones."
+    },
+    {
+      "number": "02",
+      "title": "Definicion",
+      "description": "Sintesis de hallazgos en problemas concretos. Criterios de exito medibles y alcance claro."
+    },
+    {
+      "number": "03",
+      "title": "Diseño",
+      "description": "De lo abstracto a lo concreto: flujos, wireframes y UI. Iteracion rapida con criterio."
+    },
+    {
+      "number": "04",
+      "title": "Validacion",
+      "description": "Testing con usuarios reales, analisis de resultados y refinamiento basado en evidencia."
+    }
+  ],
+  "stats": [
+    {
+      "value": "5+",
+      "label": "Años de experiencia"
+    },
+    {
+      "value": "30+",
+      "label": "Proyectos entregados"
+    },
+    {
+      "value": "12+",
+      "label": "Clientes"
+    }
+  ]
+}
