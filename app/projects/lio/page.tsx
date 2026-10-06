@@ -52,7 +52,7 @@ export default function LioPage() {
         {/* Hero */}
         <div className="space-y-5">
           <p className="font-sans text-[10px] tracking-widest uppercase text-black/30">
-            03 Identidad Visual · Branding · Sistema de empaques · 2024
+            03 Identidad Visual · Branding · Sistema de empaques · 2026
           </p>
           <h1 className="font-serif text-[clamp(4rem,10vw,9rem)] leading-[0.9] tracking-tight text-black">
             LIO
@@ -105,7 +105,7 @@ export default function LioPage() {
 
         {/* Footer */}
         <div className="pt-8 border-t border-black/8 flex items-center justify-between">
-          <p className="font-sans text-[10px] tracking-widest uppercase text-black/20">03 Identidad Visual · 2024</p>
+          <p className="font-sans text-[10px] tracking-widest uppercase text-black/20">03 Identidad Visual · 2026</p>
           <Link href="/#proyectos" className="font-sans text-[10px] tracking-widest uppercase text-black/30 hover:text-black transition-colors">
             ← Volver a proyectos
           </Link>

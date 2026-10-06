@@ -46,10 +46,10 @@ const categories: { label: string; sublabel: string; number: string; color: stri
         id: "esperando-a-olivia",
         title: "Esperando a Olivia",
         category: "Fotografía Documental",
-        year: "2025",
+        year: "2026",
         shortDesc: "Un registro de la espera, la cercanía y la transformación de una familia antes de recibir a su hija.",
         fullDesc: "Serie fotográfica familiar que documenta la espera de una hija desde una mirada íntima y natural. El proyecto captura la conexión entre los padres, la expectativa y los pequeños gestos que acompañan esta etapa, construyendo un recuerdo visual cálido y atemporal.",
-        cover: "/projects/olivia/img_1.jpeg",
+        cover: "/projects/olivia/img_0.jpeg",
         href: "/projects/esperando-a-olivia",
         tags: ["Fotografía", "Documental", "Serie familiar"],
       },
@@ -96,7 +96,7 @@ const categories: { label: string; sublabel: string; number: string; color: stri
         id: "lio",
         title: "LIO",
         category: "Branding · Identidad Visual",
-        year: "2024",
+        year: "2026",
         shortDesc: "Lo natural nunca había sido tan crujiente.",
         fullDesc:
           "LIO es una marca de snacks liofilizados que convierte frutas y verduras en productos crujientes, naturales y saludables. El proyecto abarcó el desarrollo completo del sistema de identidad visual: naming, logotipo, paleta cromática, tipografía, packaging y manual de marca.\n\nEl sistema visual refleja la naturaleza del proceso de liofilización: lo orgánico transformado en algo nuevo, preservando su esencia. Se desarrollaron 15 SKUs organizados en 3 líneas de producto: Frutas, Verduras, y Frutas + Chocolate.\n\nCada línea tiene su propio lenguaje visual dentro del sistema, manteniendo coherencia de marca en todos los puntos de contacto.",
@@ -394,7 +394,7 @@ export default function Work() {
               { src: "/projects/automotive-cover.jpg", alt: "Entre motores y adrenalina", href: "/projects/automotive" },
               { src: "/projects/ritto-cover.png", alt: "Ritto", href: "/projects/ritto" },
               { src: "/projects/lio-cover.png", alt: "LIO", href: "/projects/lio" },
-              { src: "/projects/olivia/img_1.jpeg", alt: "Esperando a Olivia", href: "/projects/esperando-a-olivia" },
+              { src: "/projects/olivia/img_0.jpeg", alt: "Esperando a Olivia", href: "/projects/esperando-a-olivia" },
             ]}
             radiusX={320}
             radiusY={110}

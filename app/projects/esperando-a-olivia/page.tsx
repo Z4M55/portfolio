@@ -34,19 +34,19 @@ export default function EsperandoAOlivia() {
       <div style={{ height: "85vh" }}>
         <CircularCarousel
           items={photos}
-          preset="cylinder"
+          preset="orbit"
           intro="rise"
-          cardWidth={260}
+          cardWidth={280}
           aspectRatio={0.75}
-          gap={20}
-          speed={8}
+          gap={30}
+          speed={10}
           autoplay="drift"
           direction="left"
-          depthFade={0.6}
+          depthFade={0.4}
           fadeColor="#0e0c0a"
-          innerShade={0.5}
+          innerShade={0.25}
           captions
-          cornerRadius={8}
+          cornerRadius={10}
           className="w-full h-full"
         />
       </div>
@@ -57,7 +57,7 @@ export default function EsperandoAOlivia() {
         {/* Hero text */}
         <div className="space-y-5">
           <p className="font-sans text-[10px] tracking-widest uppercase text-white/25">
-            01 Imagen y movimiento · Fotografía Documental · 2025
+            01 Imagen y movimiento · Fotografía Documental · 2026
           </p>
           <h1 className="font-serif text-[clamp(2.8rem,7vw,6rem)] leading-[1.0] tracking-tight">
             Esperando<br />a Olivia
@@ -96,7 +96,7 @@ export default function EsperandoAOlivia() {
 
         {/* Footer */}
         <div className="pt-8 border-t border-white/[0.07] flex items-center justify-between">
-          <p className="font-sans text-[10px] tracking-widest uppercase text-white/20">Samuel Serna G. · 2025</p>
+          <p className="font-sans text-[10px] tracking-widest uppercase text-white/20">Samuel Serna G. · 2026</p>
           <Link href="/#proyectos" className="font-sans text-[10px] tracking-widest uppercase text-white/30 hover:text-white transition-colors">
             ← Volver a proyectos
           </Link>
