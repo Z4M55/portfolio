@@ -15,6 +15,7 @@ interface Project {
   fullDesc: string;
   link?: string;
   linkLabel?: string;
+  href?: string;
   cover?: string;
   audio?: string;
   loading?: boolean;
@@ -38,6 +39,7 @@ const categories: { label: string; sublabel: string; number: string; color: stri
           "Este proyecto propone una experiencia sonora inmersiva que sitúa al oyente dentro de una carrera ficticia entre Alex y Marco. A través de sus diálogos y de los sonidos del entorno, la narración transmite la expectativa antes de arrancar, la tensión de las curvas y la emoción de llegar al final.\n\nLa propuesta utiliza Adobe Audition para editar las voces y construir una mezcla con distintas capas de sonido: motores, aceleraciones, neumáticos sobre el asfalto, viento y ambiente de carretera. El movimiento del sonido entre los canales estéreo permite representar la posición de los vehículos y sus adelantamientos, mientras los cambios de volumen y las pausas refuerzan la sensación de velocidad y cercanía.",
         audio: "/projects/automotive.mp3",
         cover: "/projects/automotive-cover.jpg",
+        href: "/projects/automotive",
         tags: ["Adobe Audition", "Sound Design", "Narrativa"],
       },
       {
@@ -76,6 +78,7 @@ const categories: { label: string; sublabel: string; number: string; color: stri
           "Ritto es una aplicación UX/UI diseñada para creativos audiovisuales de Medellín. El proyecto propone una escenografía más accesible, sostenible y cercana: menos distancia entre la idea y el escenario.\n\nLa plataforma conecta directores, productores y técnicos con espacios y recursos para la producción audiovisual. El diseño parte de una investigación sobre los flujos de trabajo actuales y los puntos de fricción en la búsqueda de locaciones.\n\nProyecto conceptual · Prototipo UX/UI · Medellín\nAutoría: Celeste Gómez + Samuel Serna G.",
         link: "https://www.figma.com/design/fSLuq0OZvqvzX8cvMIRRyk/Ritto?node-id=4009-833&t=Hfe1sIOPu6M2pfIp-1",
         linkLabel: "Ver prototipo en Figma",
+        href: "/projects/ritto",
         cover: "/projects/ritto-cover.png",
         tags: ["Figma", "UX Research", "Prototipo"],
       },
@@ -97,6 +100,7 @@ const categories: { label: string; sublabel: string; number: string; color: stri
           "LIO es una marca de snacks liofilizados que convierte frutas y verduras en productos crujientes, naturales y saludables. El proyecto abarcó el desarrollo completo del sistema de identidad visual: naming, logotipo, paleta cromática, tipografía, packaging y manual de marca.\n\nEl sistema visual refleja la naturaleza del proceso de liofilización: lo orgánico transformado en algo nuevo, preservando su esencia. Se desarrollaron 15 SKUs organizados en 3 líneas de producto: Frutas, Verduras, y Frutas + Chocolate.\n\nCada línea tiene su propio lenguaje visual dentro del sistema, manteniendo coherencia de marca en todos los puntos de contacto.",
         link: "https://www.figma.com/design/IqssKPNEvOc9KqnXeKl9E4/LIO-PRODUCOTOS?node-id=2-49&t=NGmvy8UF8Gar8lpy-1",
         linkLabel: "Ver sistema de identidad",
+        href: "/projects/lio",
         cover: "/projects/lio-cover.png",
         tags: ["Branding", "Packaging", "Figma", "15 SKUs"],
       },
@@ -281,12 +285,22 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
             <p className="font-serif text-base text-ivory mb-2">{project.title}</p>
             <p className="font-sans text-xs text-white/55 leading-relaxed">{project.shortDesc}</p>
           </div>
-          <button
-            className="font-sans text-[10px] tracking-widest uppercase text-ivory/70 hover:text-ivory transition-colors text-left"
-            onClick={(e) => { e.stopPropagation(); onOpen(); }}
-          >
-            Ver proyecto →
-          </button>
+          {project.href ? (
+            <a
+              href={project.href}
+              className="font-sans text-[10px] tracking-widest uppercase text-ivory/70 hover:text-ivory transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Ver proyecto →
+            </a>
+          ) : (
+            <button
+              className="font-sans text-[10px] tracking-widest uppercase text-ivory/70 hover:text-ivory transition-colors text-left"
+              onClick={(e) => { e.stopPropagation(); onOpen(); }}
+            >
+              Ver proyecto →
+            </button>
+          )}
         </div>
       }
     />
@@ -297,7 +311,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
 function CategorySection({ cat, index }: { cat: typeof categories[0]; index: number }) {
   const [open, setOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
-  const isDark = index < 2;
+  const isDark = true; // always on jet background
 
   return (
     <>
