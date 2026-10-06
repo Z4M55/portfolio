@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Folder from "./Folder";
 import FlipCard from "./FlipCard";
 
@@ -12,6 +13,7 @@ interface Project {
   year: string;
   description: string;
   link?: string;
+  cover?: string;
   loading?: boolean;
 }
 
@@ -55,9 +57,11 @@ const categories: { label: string; number: string; color: string; projects: Proj
       {
         id: "ritto",
         title: "Ritto",
-        category: "UX/UI Design",
+        category: "UX/UI · Prototipo",
         year: "2024",
-        description: "Diseño de interfaz y experiencia de usuario para plataforma digital.",
+        description: "Lo cotidiano es el escenario. Aplicación UX/UI para creativos audiovisuales de Medellín. Escenografía más accesible, sostenible y cercana.",
+        link: "https://www.figma.com/design/fSLuq0OZvqvzX8cvMIRRyk/Ritto?node-id=4009-833&t=Hfe1sIOPu6M2pfIp-1",
+        cover: "/projects/ritto-cover.png",
       },
       {
         id: "binance",
@@ -77,9 +81,11 @@ const categories: { label: string; number: string; color: string; projects: Proj
       {
         id: "lio",
         title: "Branding LIO",
-        category: "Branding / Identidad Visual",
+        category: "Branding · Identidad Visual",
         year: "2024",
-        description: "Desarrollo de sistema visual e identidad de marca completa para LIO.",
+        description: "Lo natural nunca había sido tan crujiente. Sistema de identidad para snacks liofilizados. 15 SKUs, 3 líneas de producto: Frutas, Verduras, Frutas + Chocolate.",
+        link: "https://www.figma.com/design/IqssKPNEvOc9KqnXeKl9E4/LIO-PRODUCOTOS?node-id=2-49&t=NGmvy8UF8Gar8lpy-1",
+        cover: "/projects/lio-cover.png",
       },
     ],
   },
@@ -137,14 +143,21 @@ function ProjectCard({ project }: { project: Project }) {
       shadow={false}
       ariaLabel={`Ver proyecto: ${project.title}`}
       front={
-        <div className="w-full h-full p-6 flex flex-col justify-between">
-          <div>
-            <p className="font-sans text-[9px] tracking-widest uppercase text-white/30">{project.category}</p>
-            <h3 className="font-serif text-2xl text-ivory mt-2 leading-tight">{project.title}</h3>
-          </div>
-          <div className="space-y-1">
-            <p className="font-sans text-[9px] text-white/25">{project.year}</p>
-            <p className="font-sans text-[9px] tracking-widest uppercase text-white/20">Clic para ver →</p>
+        <div className="w-full h-full flex flex-col">
+          {project.cover ? (
+            <div className="relative flex-1 overflow-hidden rounded-t-[4px]">
+              <Image src={project.cover} alt={project.title} fill style={{ objectFit: "cover" }} sizes="240px" />
+            </div>
+          ) : null}
+          <div className={`p-5 flex flex-col justify-between ${project.cover ? "h-[100px]" : "flex-1"}`}>
+            <div>
+              <p className="font-sans text-[9px] tracking-widest uppercase text-white/30">{project.category}</p>
+              {!project.cover && <h3 className="font-serif text-2xl text-ivory mt-2 leading-tight">{project.title}</h3>}
+            </div>
+            <div className="flex items-center justify-between">
+              <p className="font-sans text-[9px] text-white/25">{project.year}</p>
+              <p className="font-sans text-[9px] tracking-widest uppercase text-white/20">→</p>
+            </div>
           </div>
         </div>
       }
