@@ -31,7 +31,7 @@ export default function Contact() {
           <br />
           QUE VALGA
           <br />
-          RECORDAR.
+          LA PENA.
         </motion.h2>
 
         <motion.div

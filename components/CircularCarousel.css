@@ -1,0 +1,164 @@
+.circular-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+}
+
+.circular-carousel__view {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+[data-ready] .circular-carousel__view {
+  opacity: 1;
+}
+
+.circular-carousel__stage {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.circular-carousel__camera {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.circular-carousel__ring {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.circular-carousel__card {
+  position: absolute;
+  transform-style: preserve-3d;
+  will-change: transform;
+  cursor: pointer;
+}
+
+.circular-carousel__tile {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.circular-carousel__frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.circular-carousel__photo {
+  position: absolute;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.circular-carousel__shade {
+  position: absolute;
+  inset: 0;
+  background: var(--cc-fade, #000000);
+  opacity: var(--cc-depth, 0);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.circular-carousel__inner {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, calc(1 - var(--cc-inner, 0.4)));
+  pointer-events: none;
+}
+
+.circular-carousel__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.circular-carousel__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.circular-carousel__subtitle {
+  font-size: 11px;
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+.circular-carousel__count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  font-variant-numeric: tabular-nums;
+}
+
+.circular-carousel__digits {
+  display: inline-flex;
+}
+
+.circular-carousel__digit {
+  width: 0.65em;
+  overflow: hidden;
+  position: relative;
+  height: 1.1em;
+}
+
+.circular-carousel__reel {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.circular-carousel__reel span {
+  height: 1.1em;
+  display: block;
+  text-align: center;
+}
+
+.circular-carousel__slash {
+  opacity: 0.3;
+  margin: 0 2px;
+}
+
+.circular-carousel__live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+[data-draggable] {
+  cursor: grab;
+}
+
+[data-dragging] {
+  cursor: grabbing !important;
+}

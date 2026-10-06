@@ -44,13 +44,15 @@ const categories: { label: string; sublabel: string; number: string; color: stri
         tags: ["Adobe Audition", "Sound Design", "Narrativa"],
       },
       {
-        id: "fotografia",
-        title: "Fotografía Documental",
-        category: "Fotografía",
+        id: "esperando-a-olivia",
+        title: "Esperando a Olivia",
+        category: "Fotografía Documental",
         year: "2025",
-        shortDesc: "Serie fotográfica en desarrollo.",
-        fullDesc: "Proyecto en desarrollo.",
-        loading: true,
+        shortDesc: "Un registro de la espera, la cercanía y la transformación de una familia antes de recibir a su hija.",
+        fullDesc: "Serie fotográfica familiar que documenta la espera de una hija desde una mirada íntima y natural. El proyecto captura la conexión entre los padres, la expectativa y los pequeños gestos que acompañan esta etapa, construyendo un recuerdo visual cálido y atemporal.",
+        cover: "/projects/olivia/img_1.jpeg",
+        href: "/projects/esperando-a-olivia",
+        tags: ["Fotografía", "Documental", "Serie familiar"],
       },
       {
         id: "video-motion",
@@ -266,8 +268,16 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
       front={
         <div className="w-full h-full flex flex-col">
           {project.cover && (
-            <div className="relative flex-1 overflow-hidden">
+            <div className="relative flex-1 overflow-hidden group">
               <Image src={project.cover} alt={project.title} fill style={{ objectFit: "cover" }} sizes="220px" />
+              {/* Hover overlay with CTA */}
+              {project.href && (
+                <div className="absolute inset-0 bg-jet/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                  <span className="font-sans text-[10px] tracking-widest uppercase text-ivory border border-ivory/40 px-3 py-1.5 rounded-sm">
+                    Ver proyecto →
+                  </span>
+                </div>
+              )}
             </div>
           )}
           <div className={`p-4 flex flex-col justify-between ${project.cover ? "h-[90px]" : "flex-1"}`}>
@@ -275,7 +285,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
             {!project.cover && <h3 className="font-serif text-lg text-ivory leading-tight">{project.title}</h3>}
             <div className="flex items-center justify-between">
               <p className="font-sans text-[9px] text-white/20">{project.year}</p>
-              <p className="font-sans text-[9px] text-white/20">→</p>
+              <p className="font-sans text-[9px] text-white/40">→</p>
             </div>
           </div>
         </div>

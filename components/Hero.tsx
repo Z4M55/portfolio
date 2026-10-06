@@ -132,22 +132,22 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Floating card */}
+            {/* Floating banner — horizontal */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.7 }}
-              className="absolute bottom-6 right-5 md:bottom-8 md:right-8 bg-jet/85 backdrop-blur-md border border-white/10 rounded-xl p-5 max-w-[230px] shadow-xl"
+              className="absolute bottom-6 left-5 right-5 md:bottom-8 md:left-8 md:right-8 bg-jet/85 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-xl flex items-center gap-5"
             >
-              <div>
+              <div className="flex-1 min-w-0">
                 <p className="font-sans text-[9px] tracking-widest uppercase text-white/40 mb-1">
                   Disponible para proyectos
                 </p>
                 <p className="font-serif text-sm text-ivory leading-snug">
-                  Comparte los detalles de tu idea y te responderé con una propuesta.
+                  Comparte tu idea y te respondo con una propuesta.
                 </p>
               </div>
-              <div className="mt-4">
+              <div className="flex-shrink-0">
                 <GlassIcons
                   items={[{
                     icon: (
