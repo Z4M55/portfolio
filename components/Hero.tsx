@@ -107,29 +107,36 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── Right column: iso-cube SVG (top half only) ── */}
+          {/* ── Right column: portrait photo ── */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="relative min-h-[420px] md:min-h-0 bg-jet overflow-hidden flex items-start justify-center"
+            className="relative min-h-[480px] md:min-h-0 overflow-hidden"
           >
-            {/* SVG shown only top half — cube emerges from center */}
-            <div className="w-full h-full absolute inset-0 flex items-center justify-center p-8">
-              <div
-                className="w-full"
-                style={{ clipPath: "inset(0 0 50% 0)" }}
-              >
-                <Image
-                  src="/icons/iso-cube.svg"
-                  alt="Samuel Serna G."
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                  style={{ filter: "invert(1) opacity(0.85)" }}
-                  priority
-                />
-              </div>
+            {/* Portrait photo — full cover */}
+            <Image
+              src="/portrait.jpg"
+              alt="Samuel Serna G."
+              fill
+              style={{ objectFit: "cover", objectPosition: "center top" }}
+              sizes="(max-width: 768px) 100vw, 55vw"
+              priority
+            />
+
+            {/* Subtle gradient overlay bottom */}
+            <div className="absolute inset-0 bg-gradient-to-t from-jet/60 via-transparent to-transparent" />
+
+            {/* Iso-cube watermark top-right */}
+            <div className="absolute top-6 right-6 w-20 h-20 opacity-25">
+              <Image
+                src="/icons/iso-cube.svg"
+                alt=""
+                width={80}
+                height={80}
+                className="w-full h-auto"
+                style={{ filter: "invert(1)" }}
+              />
             </div>
 
             {/* Floating banner — horizontal */}
@@ -137,7 +144,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.7 }}
-              className="absolute bottom-6 left-5 right-5 md:bottom-8 md:left-8 md:right-8 bg-jet/85 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-xl flex items-center gap-5"
+              className="absolute bottom-6 left-5 right-5 md:bottom-8 md:left-8 md:right-8 bg-jet/80 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-xl flex items-center gap-5"
             >
               <div className="flex-1 min-w-0">
                 <p className="font-sans text-[9px] tracking-widest uppercase text-white/40 mb-1">

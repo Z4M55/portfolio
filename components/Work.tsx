@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Folder from "./Folder";
-import FlipCard from "./FlipCard";
 import OrbitImages from "./OrbitImages";
 
 interface Project {
@@ -228,26 +227,12 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
   if (project.loading) {
     return (
-      <div className="relative">
-        <div style={{ filter: "blur(3px)", pointerEvents: "none", userSelect: "none" }}>
-          <FlipCard
-            width={220}
-            height={300}
-            radius={4}
-            background="#1c1c1c"
-            color="#f2f0ec"
-            shadow={false}
-            disabled
-            front={
-              <div className="w-full h-full p-5 flex flex-col justify-between">
-                <p className="font-sans text-[9px] tracking-widest uppercase text-white/25">{project.category}</p>
-                <p className="font-sans text-[9px] text-white/20">{project.year}</p>
-              </div>
-            }
-            back={<div className="w-full h-full p-5"><p className="font-sans text-xs text-white/40">{project.shortDesc}</p></div>}
-          />
+      <div className="relative w-[220px] h-[300px] rounded overflow-hidden" style={{ filter: "blur(3px)", pointerEvents: "none", userSelect: "none" }}>
+        <div className="w-full h-full bg-[#1c1c1c] p-5 flex flex-col justify-between">
+          <p className="font-sans text-[9px] tracking-widest uppercase text-white/25">{project.category}</p>
+          <p className="font-sans text-[9px] text-white/20">{project.year}</p>
         </div>
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-center">
           <span className="bg-jet/80 backdrop-blur-sm text-ivory font-sans text-[9px] tracking-widest uppercase px-3 py-1.5 rounded-sm border border-white/10">
             En edición
           </span>
@@ -256,65 +241,53 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
     );
   }
 
+  const cardContent = (
+    <div className="w-[220px] flex-shrink-0 bg-[#141414] rounded overflow-hidden border border-white/[0.07] group transition-all duration-300 hover:border-white/20 hover:-translate-y-1 hover:shadow-xl flex flex-col">
+      {/* Cover image */}
+      {project.cover ? (
+        <div className="relative h-[160px] overflow-hidden">
+          <Image src={project.cover} alt={project.title} fill style={{ objectFit: "cover" }} sizes="220px" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/80 to-transparent" />
+        </div>
+      ) : (
+        <div className="h-[160px] bg-[#1c1c1c] flex items-center justify-center">
+          <p className="font-serif text-2xl text-white/20">{project.category.slice(0, 2)}</p>
+        </div>
+      )}
+
+      {/* Info */}
+      <div className="p-4 flex flex-col flex-1 justify-between gap-3">
+        <div>
+          <p className="font-sans text-[9px] tracking-widest uppercase text-white/25 mb-1">{project.category}</p>
+          <h3 className="font-serif text-base text-ivory leading-snug">{project.title}</h3>
+          <p className="font-sans text-[10px] text-white/35 mt-1 leading-relaxed line-clamp-2">{project.shortDesc}</p>
+        </div>
+        <div className="flex items-center justify-between pt-2 border-t border-white/[0.07]">
+          <span className="font-sans text-[9px] text-white/20">{project.year}</span>
+          <span className="font-sans text-[9px] tracking-widest uppercase text-white/50 group-hover:text-ivory transition-colors">
+            Ver →
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (project.href) {
+    return (
+      <a href={project.href} className="block no-underline" style={{ textDecoration: "none" }}>
+        {cardContent}
+      </a>
+    );
+  }
+
   return (
-    <FlipCard
-      width={220}
-      height={300}
-      radius={4}
-      background="#1c1c1c"
-      color="#f2f0ec"
-      shadow={false}
-      ariaLabel={`Ver proyecto: ${project.title}`}
-      front={
-        <div className="w-full h-full flex flex-col">
-          {project.cover && (
-            <div className="relative flex-1 overflow-hidden group">
-              <Image src={project.cover} alt={project.title} fill style={{ objectFit: "cover" }} sizes="220px" />
-              {/* Hover overlay with CTA */}
-              {project.href && (
-                <div className="absolute inset-0 bg-jet/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                  <span className="font-sans text-[10px] tracking-widest uppercase text-ivory border border-ivory/40 px-3 py-1.5 rounded-sm">
-                    Ver proyecto →
-                  </span>
-                </div>
-              )}
-            </div>
-          )}
-          <div className={`p-4 flex flex-col justify-between ${project.cover ? "h-[90px]" : "flex-1"}`}>
-            <p className="font-sans text-[9px] tracking-widest uppercase text-white/30">{project.category}</p>
-            {!project.cover && <h3 className="font-serif text-lg text-ivory leading-tight">{project.title}</h3>}
-            <div className="flex items-center justify-between">
-              <p className="font-sans text-[9px] text-white/20">{project.year}</p>
-              <p className="font-sans text-[9px] text-white/40">→</p>
-            </div>
-          </div>
-        </div>
-      }
-      back={
-        <div className="w-full h-full p-5 flex flex-col justify-between bg-[#1c1c1c]">
-          <div>
-            <p className="font-serif text-base text-ivory mb-2">{project.title}</p>
-            <p className="font-sans text-xs text-white/55 leading-relaxed">{project.shortDesc}</p>
-          </div>
-          {project.href ? (
-            <a
-              href={project.href}
-              className="font-sans text-[10px] tracking-widest uppercase text-ivory/70 hover:text-ivory transition-colors"
-              onClick={(e) => e.stopPropagation()}
-            >
-              Ver proyecto →
-            </a>
-          ) : (
-            <button
-              className="font-sans text-[10px] tracking-widest uppercase text-ivory/70 hover:text-ivory transition-colors text-left"
-              onClick={(e) => { e.stopPropagation(); onOpen(); }}
-            >
-              Ver proyecto →
-            </button>
-          )}
-        </div>
-      }
-    />
+    <button
+      onClick={onOpen}
+      className="text-left block"
+      aria-label={`Abrir proyecto: ${project.title}`}
+    >
+      {cardContent}
+    </button>
   );
 }
 
@@ -421,7 +394,7 @@ export default function Work() {
               { src: "/projects/automotive-cover.jpg", alt: "Entre motores y adrenalina", href: "/projects/automotive" },
               { src: "/projects/ritto-cover.png", alt: "Ritto", href: "/projects/ritto" },
               { src: "/projects/lio-cover.png", alt: "LIO", href: "/projects/lio" },
-              { src: "/portrait.jpg", alt: "Samuel Serna G." },
+              { src: "/projects/olivia/img_1.jpeg", alt: "Esperando a Olivia", href: "/projects/esperando-a-olivia" },
             ]}
             radiusX={320}
             radiusY={110}

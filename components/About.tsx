@@ -28,13 +28,13 @@ export default function About() {
             transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <h2 className="font-serif text-[clamp(2.2rem,4.5vw,5rem)] leading-[1.08] mb-10">
+              Observo para
+              <br />
+              comprender.
+              <br />
               Diseño para
               <br />
-              entender.
-              <br />
-              Entiendo para
-              <br />
-              <em>diseñar.</em>
+              <em>conectar.</em>
             </h2>
 
             <div className="space-y-5">
