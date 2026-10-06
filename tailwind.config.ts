@@ -1,0 +1,25 @@
+import type { Config } from "tailwindcss";
+
+export default {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+      },
+      colors: {
+        ivory: "#F2F0EC",
+        jet: "#080808",
+      },
+      maxWidth: {
+        "8xl": "1440px",
+      },
+    },
+  },
+  plugins: [],
+} satisfies Config;
