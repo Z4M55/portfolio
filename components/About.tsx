@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 export default function About() {
   const ref = useRef(null);
@@ -44,9 +45,8 @@ export default function About() {
             transition={{ duration: 0.9, delay: 0.2 }}
             className="space-y-8"
           >
-            {/* Portrait placeholder */}
-            <div className="w-full aspect-[3/4] bg-jet/5 border border-jet/8 flex items-center justify-center rounded-sm">
-              <span className="font-serif text-6xl text-jet/10">SS</span>
+            <div className="relative w-full aspect-[3/4] rounded-sm overflow-hidden">
+              <Image src="/portrait.jpg" alt="Samuel Serna G." fill style={{ objectFit: "cover", objectPosition: "top" }} sizes="(max-width: 768px) 100vw, 40vw" />
             </div>
 
             <div className="space-y-4">

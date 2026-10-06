@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import PixelCard from "./PixelCard";
 import TechText from "./TechText";
 
@@ -95,12 +96,8 @@ export default function Hero() {
               variant="default"
               className="w-full aspect-[3/4] rounded-sm overflow-hidden bg-jet/5 border border-jet/8 flex items-center justify-center"
             >
-              {/* Portrait placeholder */}
-              <div className="relative w-full h-full flex items-center justify-center">
-                <span className="font-serif text-[8rem] text-jet/10 select-none">SS</span>
-                <p className="absolute bottom-6 font-sans text-[10px] tracking-widest uppercase text-jet/25">
-                  Fotografía próximamente
-                </p>
+              <div className="relative w-full h-full">
+                <Image src="/portrait.jpg" alt="Samuel Serna G." fill style={{ objectFit: "cover", objectPosition: "top" }} sizes="(max-width: 768px) 100vw, 50vw" priority />
               </div>
             </PixelCard>
 

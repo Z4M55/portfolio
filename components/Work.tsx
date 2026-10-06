@@ -26,10 +26,11 @@ const categories: { label: string; number: string; color: string; projects: Proj
       {
         id: "automotive",
         title: "Entre motores y adrenalina",
-        category: "Audio / Diseño Sonoro",
+        category: "Audio · Diseño Sonoro",
         year: "2025",
         description: "Una experiencia sonora inmersiva que sitúa al oyente dentro de una carrera ficticia. Mezcla de capas de sonido: motores, aceleraciones, neumáticos y ambiente.",
-        link: "/Automotive.pdf",
+        link: "/projects/automotive.mp3",
+        cover: "/projects/automotive-cover.jpg",
       },
       {
         id: "fotografia",
