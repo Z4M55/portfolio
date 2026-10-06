@@ -5,14 +5,14 @@ import { motion, useInView } from "framer-motion";
 import LogoLoop from "./LogoLoop";
 
 const tools = [
-  { name: "Figma", icon: "" },
-  { name: "Audition", icon: "" },
-  { name: "Illustrator", icon: "" },
-  { name: "Photoshop", icon: "" },
-  { name: "After Effects", icon: "" },
-  { name: "Premiere", icon: "" },
-  { name: "InDesign", icon: "" },
-  { name: "Blender", icon: "" },
+  { name: "Figma", icon: "/icons/figma.png" },
+  { name: "After Effects", icon: "/icons/aftereffects.png" },
+  { name: "Premiere", icon: "/icons/premiere.png" },
+  { name: "Illustrator", icon: "/icons/illustrator.png" },
+  { name: "GitHub", icon: "/icons/github.png" },
+  { name: "Figma", icon: "/icons/figma.png" },
+  { name: "After Effects", icon: "/icons/aftereffects.png" },
+  { name: "Premiere", icon: "/icons/premiere.png" },
 ];
 
 export default function Experience() {
