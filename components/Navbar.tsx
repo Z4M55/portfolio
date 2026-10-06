@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const links = [
   { href: "#inicio", label: "Inicio" },
@@ -34,13 +35,24 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-8xl mx-auto px-8 md:px-12 h-20 flex items-center justify-between">
-          <Link
-            href="/"
-            className={`font-serif text-2xl tracking-tight transition-colors duration-300 ${
-              scrolled ? "text-ivory" : "text-jet"
-            }`}
-          >
-            SS
+          {/* Logo — iso-cube SVG + name */}
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className={`w-8 h-8 transition-opacity duration-300 ${scrolled ? "opacity-90" : "opacity-80"}`}>
+              <Image
+                src="/icons/iso-cube.svg"
+                alt="Samuel Serna"
+                width={32}
+                height={32}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span
+              className={`font-serif text-xl tracking-tight transition-colors duration-300 ${
+                scrolled ? "text-ivory" : "text-jet"
+              }`}
+            >
+              Samuel Serna
+            </span>
           </Link>
 
           {/* Desktop links */}
@@ -62,8 +74,8 @@ export default function Navbar() {
           </ul>
 
           <a
-            href="#contact"
-            className={`hidden md:inline-flex font-sans text-[11px] tracking-widest uppercase px-5 py-3 border transition-all duration-300 ${
+            href="#contacto-form"
+            className={`hidden md:inline-flex font-sans text-[11px] tracking-widest uppercase px-5 py-3 border transition-all duration-300 rounded-sm ${
               scrolled
                 ? "text-ivory border-white/20 hover:bg-ivory hover:text-jet"
                 : "text-jet border-jet/20 hover:bg-jet hover:text-ivory"
@@ -108,7 +120,7 @@ export default function Navbar() {
             className="fixed top-20 inset-x-0 z-40 bg-jet/97 backdrop-blur-md border-b border-white/10 md:hidden"
           >
             <div className="px-8 py-8 flex flex-col gap-6">
-              {[...links, { href: "#contact", label: "Contact" }].map((l) => (
+              {[...links, { href: "#contacto-form", label: "Iniciar un proyecto" }].map((l) => (
                 <a
                   key={l.href}
                   href={l.href}

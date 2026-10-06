@@ -11,15 +11,20 @@ interface Project {
   title: string;
   category: string;
   year: string;
-  description: string;
+  shortDesc: string;
+  fullDesc: string;
   link?: string;
+  linkLabel?: string;
   cover?: string;
+  audio?: string;
   loading?: boolean;
+  tags?: string[];
 }
 
-const categories: { label: string; number: string; color: string; projects: Project[] }[] = [
+const categories: { label: string; sublabel: string; number: string; color: string; projects: Project[] }[] = [
   {
     label: "Imagen y movimiento",
+    sublabel: "Audio · Fotografía · Motion",
     number: "01",
     color: "#1a1a1a",
     projects: [
@@ -28,16 +33,20 @@ const categories: { label: string; number: string; color: string; projects: Proj
         title: "Entre motores y adrenalina",
         category: "Audio · Diseño Sonoro",
         year: "2025",
-        description: "Una experiencia sonora inmersiva que sitúa al oyente dentro de una carrera ficticia. Mezcla de capas de sonido: motores, aceleraciones, neumáticos y ambiente.",
-        link: "/projects/automotive.mp3",
+        shortDesc: "Experiencia sonora inmersiva dentro de una carrera ficticia.",
+        fullDesc:
+          "Este proyecto propone una experiencia sonora inmersiva que sitúa al oyente dentro de una carrera ficticia entre Alex y Marco. A través de sus diálogos y de los sonidos del entorno, la narración transmite la expectativa antes de arrancar, la tensión de las curvas y la emoción de llegar al final.\n\nLa propuesta utiliza Adobe Audition para editar las voces y construir una mezcla con distintas capas de sonido: motores, aceleraciones, neumáticos sobre el asfalto, viento y ambiente de carretera. El movimiento del sonido entre los canales estéreo permite representar la posición de los vehículos y sus adelantamientos, mientras los cambios de volumen y las pausas refuerzan la sensación de velocidad y cercanía.",
+        audio: "/projects/automotive.mp3",
         cover: "/projects/automotive-cover.jpg",
+        tags: ["Adobe Audition", "Sound Design", "Narrativa"],
       },
       {
         id: "fotografia",
-        title: "Fotografía",
-        category: "Fotografía Documental",
+        title: "Fotografía Documental",
+        category: "Fotografía",
         year: "2025",
-        description: "Serie fotográfica en desarrollo.",
+        shortDesc: "Serie fotográfica en desarrollo.",
+        fullDesc: "Proyecto en desarrollo.",
         loading: true,
       },
       {
@@ -45,13 +54,15 @@ const categories: { label: string; number: string; color: string; projects: Proj
         title: "Video & Motion Graphics",
         category: "Dirección Audiovisual",
         year: "2025",
-        description: "Piezas de video y motion graphics en producción.",
+        shortDesc: "Piezas de video y motion graphics en producción.",
+        fullDesc: "Proyecto en producción.",
         loading: true,
       },
     ],
   },
   {
     label: "Experiencia",
+    sublabel: "UX/UI · Prototipo · Interacción",
     number: "02",
     color: "#555555",
     projects: [
@@ -60,69 +71,173 @@ const categories: { label: string; number: string; color: string; projects: Proj
         title: "Ritto",
         category: "UX/UI · Prototipo",
         year: "2024",
-        description: "Lo cotidiano es el escenario. Aplicación UX/UI para creativos audiovisuales de Medellín. Escenografía más accesible, sostenible y cercana.",
+        shortDesc: "Lo cotidiano es el escenario.",
+        fullDesc:
+          "Ritto es una aplicación UX/UI diseñada para creativos audiovisuales de Medellín. El proyecto propone una escenografía más accesible, sostenible y cercana: menos distancia entre la idea y el escenario.\n\nLa plataforma conecta directores, productores y técnicos con espacios y recursos para la producción audiovisual. El diseño parte de una investigación sobre los flujos de trabajo actuales y los puntos de fricción en la búsqueda de locaciones.\n\nProyecto conceptual · Prototipo UX/UI · Medellín\nAutoría: Celeste Gómez + Samuel Serna G.",
         link: "https://www.figma.com/design/fSLuq0OZvqvzX8cvMIRRyk/Ritto?node-id=4009-833&t=Hfe1sIOPu6M2pfIp-1",
+        linkLabel: "Ver prototipo en Figma",
         cover: "/projects/ritto-cover.png",
-      },
-      {
-        id: "binance",
-        title: "Binance",
-        category: "UI Design",
-        year: "2024",
-        description: "Proyecto de rediseño en desarrollo.",
-        loading: true,
+        tags: ["Figma", "UX Research", "Prototipo"],
       },
     ],
   },
   {
-    label: "Identidad",
+    label: "Identidad Visual",
+    sublabel: "Branding · Sistemas Gráficos",
     number: "03",
     color: "#E8E4DE",
     projects: [
       {
         id: "lio",
-        title: "Branding LIO",
+        title: "LIO",
         category: "Branding · Identidad Visual",
         year: "2024",
-        description: "Lo natural nunca había sido tan crujiente. Sistema de identidad para snacks liofilizados. 15 SKUs, 3 líneas de producto: Frutas, Verduras, Frutas + Chocolate.",
+        shortDesc: "Lo natural nunca había sido tan crujiente.",
+        fullDesc:
+          "LIO es una marca de snacks liofilizados que convierte frutas y verduras en productos crujientes, naturales y saludables. El proyecto abarcó el desarrollo completo del sistema de identidad visual: naming, logotipo, paleta cromática, tipografía, packaging y manual de marca.\n\nEl sistema visual refleja la naturaleza del proceso de liofilización: lo orgánico transformado en algo nuevo, preservando su esencia. Se desarrollaron 15 SKUs organizados en 3 líneas de producto: Frutas, Verduras, y Frutas + Chocolate.\n\nCada línea tiene su propio lenguaje visual dentro del sistema, manteniendo coherencia de marca en todos los puntos de contacto.",
         link: "https://www.figma.com/design/IqssKPNEvOc9KqnXeKl9E4/LIO-PRODUCOTOS?node-id=2-49&t=NGmvy8UF8Gar8lpy-1",
+        linkLabel: "Ver sistema de identidad",
         cover: "/projects/lio-cover.png",
+        tags: ["Branding", "Packaging", "Figma", "15 SKUs"],
       },
     ],
   },
 ];
 
-function ProjectCard({ project }: { project: Project }) {
+/* ── Project Detail Modal ── */
+function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 z-[100] flex items-end md:items-center justify-center p-0 md:p-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        {/* Backdrop */}
+        <motion.div
+          className="absolute inset-0 bg-jet/80 backdrop-blur-sm"
+          onClick={onClose}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        />
+
+        {/* Panel */}
+        <motion.div
+          className="relative z-10 bg-[#111] text-ivory w-full md:max-w-3xl max-h-[92vh] overflow-y-auto rounded-t-2xl md:rounded-2xl"
+          initial={{ y: 60, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 60, opacity: 0 }}
+          transition={{ type: "spring", stiffness: 300, damping: 32 }}
+        >
+          {/* Close */}
+          <div className="sticky top-0 z-10 flex justify-between items-center px-8 py-5 border-b border-white/8 bg-[#111]">
+            <div>
+              <p className="font-sans text-[9px] tracking-widest uppercase text-white/30">{project.category}</p>
+              <h2 className="font-serif text-xl text-ivory mt-0.5">{project.title}</h2>
+            </div>
+            <button
+              onClick={onClose}
+              className="w-8 h-8 flex items-center justify-center text-white/40 hover:text-ivory transition-colors rounded-full border border-white/10"
+              aria-label="Cerrar"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="px-8 py-8 space-y-8">
+            {/* Cover */}
+            {project.cover && (
+              <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden">
+                <Image
+                  src={project.cover}
+                  alt={project.title}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="700px"
+                />
+              </div>
+            )}
+
+            {/* Tags */}
+            {project.tags && (
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((t) => (
+                  <span key={t} className="font-sans text-[9px] tracking-widest uppercase px-3 py-1.5 border border-white/15 text-white/45 rounded-full">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Description */}
+            <div className="space-y-4">
+              {project.fullDesc.split("\n\n").map((para, i) => (
+                <p key={i} className="font-sans text-sm text-white/65 leading-relaxed">
+                  {para}
+                </p>
+              ))}
+            </div>
+
+            {/* Audio player */}
+            {project.audio && (
+              <div className="space-y-3">
+                <p className="font-sans text-[9px] tracking-widest uppercase text-white/30">Escuchar pieza</p>
+                <audio
+                  controls
+                  className="w-full rounded-lg"
+                  style={{ accentColor: "#F2F0EC" }}
+                >
+                  <source src={project.audio} type="audio/mpeg" />
+                  Tu navegador no soporta audio.
+                </audio>
+              </div>
+            )}
+
+            {/* Link */}
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-sans text-[11px] tracking-widest uppercase px-6 py-3 bg-ivory text-jet hover:bg-ivory/80 transition-colors rounded-sm"
+              >
+                {project.linkLabel ?? "Ver proyecto"} ↗
+              </a>
+            )}
+
+            <div className="pt-2 pb-2 flex items-center justify-between border-t border-white/8">
+              <span className="font-sans text-[9px] tracking-widest uppercase text-white/20">{project.year}</span>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
+/* ── Project Card ── */
+function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
   if (project.loading) {
     return (
       <div className="relative">
-        <div
-          className="w-full"
-          style={{ filter: "blur(3px)", pointerEvents: "none", userSelect: "none" }}
-        >
+        <div style={{ filter: "blur(3px)", pointerEvents: "none", userSelect: "none" }}>
           <FlipCard
-            width={240}
-            height={320}
+            width={220}
+            height={300}
             radius={4}
             background="#1c1c1c"
             color="#f2f0ec"
             shadow={false}
             disabled
             front={
-              <div className="w-full h-full p-6 flex flex-col justify-between">
-                <div>
-                  <p className="font-sans text-[9px] tracking-widest uppercase text-white/30">{project.category}</p>
-                  <h3 className="font-serif text-xl text-ivory mt-2">{project.title}</h3>
-                </div>
-                <p className="font-sans text-[10px] text-white/25">{project.year}</p>
+              <div className="w-full h-full p-5 flex flex-col justify-between">
+                <p className="font-sans text-[9px] tracking-widest uppercase text-white/25">{project.category}</p>
+                <p className="font-sans text-[9px] text-white/20">{project.year}</p>
               </div>
             }
-            back={
-              <div className="w-full h-full p-6 flex flex-col justify-between">
-                <p className="font-sans text-sm text-white/60 leading-relaxed">{project.description}</p>
-                <span className="font-sans text-[10px] tracking-widest uppercase text-white/30">En edición →</span>
-              </div>
-            }
+            back={<div className="w-full h-full p-5"><p className="font-sans text-xs text-white/40">{project.shortDesc}</p></div>}
           />
         </div>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -136,8 +251,8 @@ function ProjectCard({ project }: { project: Project }) {
 
   return (
     <FlipCard
-      width={240}
-      height={320}
+      width={220}
+      height={300}
       radius={4}
       background="#1c1c1c"
       color="#f2f0ec"
@@ -145,98 +260,107 @@ function ProjectCard({ project }: { project: Project }) {
       ariaLabel={`Ver proyecto: ${project.title}`}
       front={
         <div className="w-full h-full flex flex-col">
-          {project.cover ? (
-            <div className="relative flex-1 overflow-hidden rounded-t-[4px]">
-              <Image src={project.cover} alt={project.title} fill style={{ objectFit: "cover" }} sizes="240px" />
+          {project.cover && (
+            <div className="relative flex-1 overflow-hidden">
+              <Image src={project.cover} alt={project.title} fill style={{ objectFit: "cover" }} sizes="220px" />
             </div>
-          ) : null}
-          <div className={`p-5 flex flex-col justify-between ${project.cover ? "h-[100px]" : "flex-1"}`}>
-            <div>
-              <p className="font-sans text-[9px] tracking-widest uppercase text-white/30">{project.category}</p>
-              {!project.cover && <h3 className="font-serif text-2xl text-ivory mt-2 leading-tight">{project.title}</h3>}
-            </div>
+          )}
+          <div className={`p-4 flex flex-col justify-between ${project.cover ? "h-[90px]" : "flex-1"}`}>
+            <p className="font-sans text-[9px] tracking-widest uppercase text-white/30">{project.category}</p>
+            {!project.cover && <h3 className="font-serif text-lg text-ivory leading-tight">{project.title}</h3>}
             <div className="flex items-center justify-between">
-              <p className="font-sans text-[9px] text-white/25">{project.year}</p>
-              <p className="font-sans text-[9px] tracking-widest uppercase text-white/20">→</p>
+              <p className="font-sans text-[9px] text-white/20">{project.year}</p>
+              <p className="font-sans text-[9px] text-white/20">→</p>
             </div>
           </div>
         </div>
       }
       back={
-        <div className="w-full h-full p-6 flex flex-col justify-between bg-[#1c1c1c]">
-          <p className="font-sans text-sm text-white/65 leading-relaxed">{project.description}</p>
-          {project.link ? (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-sans text-[10px] tracking-widest uppercase text-ivory/70 hover:text-ivory transition-colors"
-              onClick={(e) => e.stopPropagation()}
-            >
-              Ver proyecto →
-            </a>
-          ) : (
-            <span className="font-sans text-[10px] tracking-widest uppercase text-white/30">
-              Próximamente →
-            </span>
-          )}
+        <div className="w-full h-full p-5 flex flex-col justify-between bg-[#1c1c1c]">
+          <div>
+            <p className="font-serif text-base text-ivory mb-2">{project.title}</p>
+            <p className="font-sans text-xs text-white/55 leading-relaxed">{project.shortDesc}</p>
+          </div>
+          <button
+            className="font-sans text-[10px] tracking-widest uppercase text-ivory/70 hover:text-ivory transition-colors text-left"
+            onClick={(e) => { e.stopPropagation(); onOpen(); }}
+          >
+            Ver proyecto →
+          </button>
         </div>
       }
     />
   );
 }
 
+/* ── Category Section ── */
 function CategorySection({ cat, index }: { cat: typeof categories[0]; index: number }) {
   const [open, setOpen] = useState(false);
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
   const isDark = index < 2;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.7, delay: index * 0.12 }}
-      className={`border-t ${isDark ? "border-white/10" : "border-jet/10"}`}
-    >
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className={`w-full flex items-center justify-between py-8 md:py-10 text-left group ${isDark ? "text-ivory" : "text-jet"}`}
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-10%" }}
+        transition={{ duration: 0.7, delay: index * 0.12 }}
+        className={`border-t ${isDark ? "border-white/10" : "border-jet/10"}`}
       >
-        <div className="flex items-baseline gap-6">
-          <span className={`font-sans text-[10px] tracking-widest uppercase ${isDark ? "text-white/25" : "text-jet/25"}`}>
-            {cat.number}
-          </span>
-          <span className="font-serif text-2xl md:text-4xl">{cat.label}</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className={`font-sans text-[10px] tracking-widest uppercase ${isDark ? "text-white/25" : "text-jet/25"}`}>
-            {cat.projects.length} proyectos
-          </span>
-          <Folder color={cat.color} size={0.6} />
-          <span className={`font-sans text-sm transition-transform duration-300 ${open ? "rotate-45" : ""} ${isDark ? "text-white/40" : "text-jet/40"}`}>
-            +
-          </span>
-        </div>
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="pb-12 flex flex-wrap gap-6">
-              {cat.projects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
+        <button
+          onClick={() => setOpen((v) => !v)}
+          className={`w-full flex items-center justify-between py-8 md:py-10 text-left group ${isDark ? "text-ivory" : "text-jet"}`}
+        >
+          <div className="flex items-baseline gap-5">
+            <span className={`font-sans text-[10px] tracking-widest uppercase ${isDark ? "text-white/25" : "text-jet/25"}`}>
+              {cat.number}
+            </span>
+            <div>
+              <span className="font-serif text-2xl md:text-4xl">{cat.label}</span>
+              <p className={`font-sans text-[10px] tracking-widest uppercase mt-1 ${isDark ? "text-white/20" : "text-jet/20"}`}>
+                {cat.sublabel}
+              </p>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className={`font-sans text-[10px] tracking-widest uppercase hidden md:block ${isDark ? "text-white/20" : "text-jet/20"}`}>
+              {cat.projects.filter((p) => !p.loading).length} proyecto{cat.projects.filter((p) => !p.loading).length !== 1 ? "s" : ""}
+            </span>
+            <Folder color={cat.color} size={0.6} />
+            <span className={`font-sans text-sm transition-transform duration-300 ${open ? "rotate-45" : ""} ${isDark ? "text-white/40" : "text-jet/40"}`}>
+              +
+            </span>
+          </div>
+        </button>
+
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+              className="overflow-hidden"
+            >
+              <div className="pb-12 flex flex-wrap gap-5">
+                {cat.projects.map((project) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    onOpen={() => setActiveProject(project)}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+
+      {activeProject && (
+        <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
+      )}
+    </>
   );
 }
 

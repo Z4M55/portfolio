@@ -2,22 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import LogoLoop from "./LogoLoop";
-
-const tools = [
-  { name: "Figma", icon: "/icons/figma.png" },
-  { name: "After Effects", icon: "/icons/aftereffects.png" },
-  { name: "Premiere", icon: "/icons/premiere.png" },
-  { name: "Illustrator", icon: "/icons/illustrator.png" },
-  { name: "GitHub", icon: "/icons/github.png" },
-  { name: "Adobe", icon: "/icons/adobe.svg" },
-  { name: "Framer", icon: "/icons/framer.svg" },
-  { name: "Claude", icon: "/icons/claude.svg" },
-  { name: "Notion", icon: "/icons/notion.svg" },
-  { name: "Figma", icon: "/icons/figma.png" },
-  { name: "After Effects", icon: "/icons/aftereffects.png" },
-  { name: "Premiere", icon: "/icons/premiere.png" },
-];
 
 export default function Experience() {
   const ref = useRef(null);
@@ -25,11 +9,6 @@ export default function Experience() {
 
   return (
     <section id="experiencia" className="bg-jet text-ivory py-28 md:py-36">
-      {/* Tools marquee */}
-      <div className="py-10 border-t border-b border-white/[0.06] mb-24">
-        <LogoLoop logos={tools} speed={50} direction="left" gap={56} scaleOnHover fadeOut />
-      </div>
-
       <div ref={ref} className="max-w-8xl mx-auto px-8 md:px-12">
         <motion.p
           initial={{ opacity: 0, y: 15 }}
