@@ -3,91 +3,74 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const areas = [
-  {
-    title: "Design",
-    skills: ["Interaction Design", "UX / UI", "Prototyping", "Visual Systems"],
-  },
-  {
-    title: "Research",
-    skills: ["User Research", "Interviews", "Usability Testing", "Information Architecture"],
-  },
-  {
-    title: "Exploration",
-    skills: ["AI", "Creative Technology", "Interactive Storytelling", "Experimental Interfaces"],
-  },
-];
-
 export default function About() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section id="about" className="bg-ivory text-jet py-28 md:py-36">
+    <section id="sobre-mi" className="bg-ivory text-jet py-28 md:py-40">
       <div ref={ref} className="max-w-8xl mx-auto px-8 md:px-12">
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="font-sans text-[10px] tracking-widest uppercase text-jet/35 mb-10"
+          transition={{ duration: 0.6 }}
+          className="font-sans text-[10px] tracking-widest uppercase text-jet/30 mb-14"
         >
-          About
+          ABOUT / 01
         </motion.p>
 
-        {/* Headline + bio */}
-        <div className="grid md:grid-cols-12 gap-10 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
+          {/* Left: headline */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9 }}
-            className="md:col-span-6"
+            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <h2 className="font-serif text-[clamp(2.4rem,5vw,5rem)] leading-[1.05]">
-              Designer by practice.
+            <h2 className="font-serif text-[clamp(2.2rem,4.5vw,5rem)] leading-[1.08]">
+              I DESIGN TO
               <br />
-              <em>Curious by nature.</em>
+              UNDERSTAND.
+              <br />
+              AND I UNDERSTAND
+              <br />
+              <em>TO DESIGN.</em>
             </h2>
           </motion.div>
 
+          {/* Right: portrait + bio */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="md:col-span-6 flex items-center"
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="space-y-8"
           >
-            <p className="font-sans text-base md:text-lg text-jet/55 leading-relaxed max-w-lg">
-              I&apos;m Samuel, an Interactive Design student interested in how design,
-              technology and human behavior can meet to create meaningful experiences.
-              I enjoy turning complex ideas into clear interactions — whether through
-              digital products, storytelling, research or experimental interfaces.
-            </p>
-          </motion.div>
-        </div>
+            {/* Portrait placeholder */}
+            <div className="w-full aspect-[3/4] bg-jet/5 border border-jet/8 flex items-center justify-center rounded-sm">
+              <span className="font-serif text-6xl text-jet/10">SS</span>
+            </div>
 
-        {/* Skill areas */}
-        <div className="grid md:grid-cols-3 border-t border-jet/10">
-          {areas.map((area, i) => (
-            <motion.div
-              key={area.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 + i * 0.08 }}
-              className={`py-10 px-0 md:px-10 ${
-                i < areas.length - 1 ? "md:border-r border-jet/10" : ""
-              } ${i > 0 ? "border-t md:border-t-0 border-jet/10" : ""}`}
-            >
-              <p className="font-sans text-[10px] tracking-widest uppercase text-jet/30 mb-7">
-                {area.title}
+            <div className="space-y-4">
+              <div>
+                <p className="font-serif text-xl text-jet">Samuel Serna</p>
+                <p className="font-sans text-[10px] tracking-widest uppercase text-jet/40 mt-1">
+                  Interactive Designer · Medellín, Colombia
+                </p>
+              </div>
+
+              <p className="font-sans text-sm text-jet/55 leading-relaxed">
+                Me interesa el diseño UX/UI para producto digital, el motion graphics, el front-end y el desarrollo de piezas gráficas y audiovisuales. Busco continuar mi crecimiento profesional a través de proyectos que integren diseño, tecnología y personas.
               </p>
-              <ul className="space-y-4">
-                {area.skills.map((skill) => (
-                  <li key={skill} className="font-serif text-xl md:text-2xl text-jet">
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+
+              <div className="pt-4 border-t border-jet/10">
+                <p className="font-sans text-[10px] tracking-widest uppercase text-jet/25 mb-2">
+                  Currently exploring
+                </p>
+                <p className="font-sans text-sm text-jet/60">
+                  Interaction × AI × Human behavior
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

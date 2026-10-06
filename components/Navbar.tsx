@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 const links = [
-  { href: "#work", label: "Work" },
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#playground", label: "Playground" },
+  { href: "#inicio", label: "Inicio" },
+  { href: "#sobre-mi", label: "Sobre mí" },
+  { href: "#proyectos", label: "Proyectos" },
+  { href: "#contacto", label: "Contacto" },
 ];
 
 export default function Navbar() {
@@ -69,7 +69,7 @@ export default function Navbar() {
                 : "text-jet border-jet/20 hover:bg-jet hover:text-ivory"
             }`}
           >
-            Let&apos;s work together
+            Iniciar un proyecto
           </a>
 
           {/* Mobile hamburger */}

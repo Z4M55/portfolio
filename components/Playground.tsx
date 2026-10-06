@@ -3,93 +3,77 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const items = [
-  {
-    title: "AI Experiments",
-    desc: "Exploring generative interfaces and prompt-driven interactions.",
-    tag: "AI",
-    col: "md:col-span-7",
-  },
-  {
-    title: "Visual Explorations",
-    desc: "Typographic systems, grids and editorial compositions.",
-    tag: "Visual",
-    col: "md:col-span-5",
-  },
-  {
-    title: "Micro Interactions",
-    desc: "Small moments of feedback that shape how digital objects feel.",
-    tag: "Motion",
-    col: "md:col-span-5",
-  },
-  {
-    title: "Prototype Concepts",
-    desc: "Rapid prototypes testing interaction patterns and novel flows.",
-    tag: "Proto",
-    col: "md:col-span-7",
-  },
-  {
-    title: "Generative Graphics",
-    desc: "Code-driven visuals and algorithmic compositions.",
-    tag: "Code",
-    col: "md:col-span-4",
-  },
-  {
-    title: "Interface Experiments",
-    desc: "Speculative UI explorations outside conventional screens.",
-    tag: "UI",
-    col: "md:col-span-8",
-  },
-];
-
-export default function Playground() {
+export default function Transmedia() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section id="playground" className="bg-ivory text-jet py-28 md:py-36">
+    <section id="transmedia" className="bg-jet text-ivory py-28 md:py-40">
       <div ref={ref} className="max-w-8xl mx-auto px-8 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.85 }}
-          className="mb-16"
+          transition={{ duration: 0.6 }}
+          className="font-sans text-[10px] tracking-widest uppercase text-white/20 mb-14"
         >
-          <p className="font-sans text-[10px] tracking-widest uppercase text-jet/30 mb-5">
-            Playground
-          </p>
-          <h2 className="font-serif text-[clamp(2.2rem,5vw,5rem)] leading-[1.05]">
-            Experiments, unfinished
-            <br />
-            <em>ideas</em> and things I build to learn.
-          </h2>
-        </motion.div>
+          Expansión / Transmedia
+        </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
-          {items.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.06 * i }}
-              className={`${item.col} group bg-jet/[0.04] border border-jet/[0.08] p-8 hover:bg-jet hover:border-jet transition-all duration-500 cursor-pointer`}
-            >
-              <div className="flex items-start justify-between mb-8">
-                <span className="font-sans text-[10px] tracking-widest uppercase text-jet/30 group-hover:text-white/35 transition-colors duration-300">
-                  {item.tag}
-                </span>
-                <span className="font-sans text-sm text-jet/20 group-hover:text-white/20 transition-colors duration-300 group-hover:translate-x-1 inline-block transition-transform">
-                  →
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <h2 className="font-serif text-[clamp(2rem,4vw,4.5rem)] leading-[1.05]">
+              Proyectos que
+              <br />
+              cruzan los tres
+              <br />
+              <em>frentes.</em>
+            </h2>
+
+            <p className="font-sans text-sm text-white/45 leading-relaxed mt-8 max-w-md">
+              Aquí convergen imagen y movimiento, experiencia e identidad. Proyectos integrales donde la narrativa, la interfaz y el sistema visual son una sola cosa.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="space-y-4"
+          >
+            {/* Currently card */}
+            <div className="bg-white/[0.04] border border-white/[0.08] p-8 rounded-sm">
+              <p className="font-sans text-[10px] tracking-widest uppercase text-white/25 mb-4">Currently</p>
+              <p className="font-serif text-xl text-ivory leading-snug">
+                Exploring interaction, transmedia and digital experiences.
+              </p>
+              <span className="inline-block mt-6 font-sans text-[9px] tracking-widest uppercase text-white/20">
+                → En construcción
+              </span>
+            </div>
+
+            {/* Placeholder transmedia project */}
+            <div className="relative">
+              <div
+                className="bg-white/[0.03] border border-white/[0.06] p-8 rounded-sm"
+                style={{ filter: "blur(2px)", pointerEvents: "none", userSelect: "none" }}
+              >
+                <p className="font-sans text-[9px] tracking-widest uppercase text-white/20 mb-2">01 + 02 + 03</p>
+                <h3 className="font-serif text-2xl text-ivory">Proyecto Transmedia</h3>
+                <p className="font-sans text-xs text-white/30 mt-3">
+                  Identidad · Interfaz · Audiovisual · 2025
+                </p>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <span className="bg-jet/80 backdrop-blur-sm text-ivory font-sans text-[9px] tracking-widest uppercase px-3 py-1.5 rounded-sm border border-white/10">
+                  En edición
                 </span>
               </div>
-              <h3 className="font-serif text-2xl md:text-3xl text-jet group-hover:text-ivory mb-3 transition-colors duration-300">
-                {item.title}
-              </h3>
-              <p className="font-sans text-sm text-jet/45 group-hover:text-white/45 leading-relaxed transition-colors duration-300">
-                {item.desc}
-              </p>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
