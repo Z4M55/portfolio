@@ -23,6 +23,29 @@ export default function Hero() {
           {/* ── Left column ── */}
           <div className="p-10 md:p-14 lg:p-16 flex flex-col justify-between gap-10 min-h-[540px] md:min-h-[600px]">
             <div className="space-y-7">
+              {/* Portrait avatar */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex items-center gap-3"
+              >
+                <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-jet/10 flex-shrink-0">
+                  <Image
+                    src="/portrait.jpg"
+                    alt="Samuel Serna G."
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "center top" }}
+                    sizes="56px"
+                    priority
+                  />
+                </div>
+                <div>
+                  <p className="font-sans text-[9px] tracking-widest uppercase text-jet/40">Samuel Serna G.</p>
+                  <p className="font-sans text-[9px] text-jet/30 mt-0.5">Medellín, Colombia</p>
+                </div>
+              </motion.div>
+
               {/* TrueFocus headline */}
               <TrueFocus
                 sentence="Diseñador Interactivo"

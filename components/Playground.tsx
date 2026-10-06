@@ -44,11 +44,11 @@ export default function Transmedia() {
             transition={{ duration: 0.9, delay: 0.2 }}
             className="space-y-4"
           >
-            {/* Currently card */}
+            {/* En proceso card */}
             <div className="bg-white/[0.04] border border-white/[0.08] p-8 rounded-sm">
-              <p className="font-sans text-[10px] tracking-widest uppercase text-white/25 mb-4">Currently</p>
+              <p className="font-sans text-[10px] tracking-widest uppercase text-white/25 mb-4">En proceso</p>
               <p className="font-serif text-xl text-ivory leading-snug">
-                Exploring interaction, transmedia and digital experiences.
+                Explorando interacción, transmedia y experiencias digitales.
               </p>
               <span className="inline-block mt-6 font-sans text-[9px] tracking-widest uppercase text-white/20">
                 → En construcción
@@ -59,7 +59,6 @@ export default function Transmedia() {
             <div className="relative">
               <div
                 className="bg-white/[0.03] border border-white/[0.06] p-8 rounded-sm"
-                style={{ filter: "blur(2px)", pointerEvents: "none", userSelect: "none" }}
               >
                 <p className="font-sans text-[9px] tracking-widest uppercase text-white/20 mb-2">01 + 02 + 03</p>
                 <h3 className="font-serif text-2xl text-ivory">Proyecto Transmedia</h3>

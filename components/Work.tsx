@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Folder from "./Folder";
 import FlipCard from "./FlipCard";
+import OrbitImages from "./OrbitImages";
 
 interface Project {
   id: string;
@@ -395,6 +396,29 @@ export default function Work() {
             <br />
             <em>Un diseñador.</em>
           </h2>
+        </motion.div>
+
+        {/* Orbit preview of projects */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="mb-8 -mx-4"
+        >
+          <OrbitImages
+            images={[
+              { src: "/projects/automotive-cover.jpg", alt: "Entre motores y adrenalina", href: "/projects/automotive" },
+              { src: "/projects/ritto-cover.png", alt: "Ritto", href: "/projects/ritto" },
+              { src: "/projects/lio-cover.png", alt: "LIO", href: "/projects/lio" },
+              { src: "/portrait.jpg", alt: "Samuel Serna G." },
+            ]}
+            radiusX={320}
+            radiusY={110}
+            duration={26}
+            itemSize={110}
+            direction={1}
+          />
         </motion.div>
 
         <div>

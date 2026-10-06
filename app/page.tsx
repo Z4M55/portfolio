@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import LogoLoop from "@/components/LogoLoop";
 import Work from "@/components/Work";
 import About from "@/components/About";
-import Experience from "@/components/Experience";
 import Transmedia from "@/components/Playground";
 import Contact from "@/components/Contact";
 import ContactForm from "@/components/ContactForm";
@@ -33,7 +32,6 @@ export default function Home() {
         </div>
         <Work />
         <About />
-        <Experience />
         <Transmedia />
         <Contact />
         <ContactForm />
